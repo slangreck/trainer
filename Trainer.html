@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trainer</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="Trainer.js"></script>
+        <script src="Step.js"></script>
+        <script src="Excercise.js"></script>
+        <script src="Rest.js"></script>
+        <script src="StepDisplay.js"></script>
+        <script src="Timer.js"></script>
+        <script>
+            const workout = {
+                name: "Skigymnastik",
+                excercises: [
+                    {
+                        name: "Aufwärmen",
+                        steps: [
+                            {
+                                name: "Schulterkreisen",
+                                duration: 30
+                            },
+                            {
+                                name: "Seitlich neigen",
+                                duration: 30
+                            },
+                            {
+                                name: "Vornüber neigen",
+                                repetitions: 10
+                            },
+                            {
+                                name: "Kniehebelauf",
+                                duration: 60
+                            }
+                        ]
+                    },
+                    {
+                        name: "Leg Blasters",
+                        repetitions: 3,
+                        rest: 30,
+                        steps: [
+                            {
+                                name: "Kniebeuge (explosiv)",
+                                repetitions: 10
+                            },
+                            {
+                                name: "Ausfallschritt",
+                                repetitions: 10,
+                                perSide: true
+                            },
+                            {
+                                name: "Ausfallschritt mit Sprung",
+                                repetitions: 5,
+                                perSide: true
+                            },
+                            {
+                                name: "Kniebeuge mit Sprung",
+                                repetitions: 5
+                            }
+                        ]
+                    },
+                    {
+                        name: "Russischer Twist",
+                        repetitions: 2,
+                        duration: 30,
+                        rest: 15
+                    },
+                    {
+                        name: "Seitsprünge mit Halten",
+                        repetitions: 3,
+                        rest: 15,
+                        steps: [
+                            {
+                                name: "Seitsprung über Hindernis",
+                                duration: 30
+                            },
+                            {
+                                name: "Halten in Abfahrtsposition",
+                                duration: 30
+                            }
+                        ]
+                    },
+                    {
+                        name: "Oberkörperstabilisation und Rücken",
+                        repetitions: 2,
+                        rest: 15,
+                        steps: [
+                            {
+                                name: "Latzug",
+                                repetitions: 10,
+                            },
+                            {
+                                name: "Superman",
+                                duration: 30,
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Jane Fonda plus",
+                        repetitions: 2,
+                        rest: 30,
+                        steps: [
+                            {
+                                name: "Jane Fonda",
+                                perSide: true,
+                                steps: [
+                                    {
+                                        name: "Heben und Senken",
+                                        duration: 30
+                                    },
+                                    {
+                                        name: "Knie zur Brust",
+                                        duration: 30
+                                    },
+                                    {
+                                        name: "Ferse zum Po",
+                                        duration: 30
+                                    },
+                                    {
+                                        name: "Kreisen lassen",
+                                        duration: 30
+                                    }
+                                ]
+                            },
+                            {
+                                name: "Innenseitlift",
+                                duration: 30,
+                                perSide: true
+                            },
+                            {
+                                name: "Ein-Auswärts-Dreher",
+                                duration: 30, 
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Ganzkörper",
+                        repetitions: 2,
+                        rest: 15,
+                        steps: [
+                            {
+                                name: "Hampelmann",
+                                duration: 30
+                            },
+                            {
+                                name: "Plank",
+                                duration: 30
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            let trainer;
+
+            window.addEventListener('load', () => {
+                trainer = new Trainer();
+                trainer.loadWorkout(workout);
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <a id="prev-excercise"></a>
+            <a id="next-excercise"></a>
+        </header>
+        <main>
+
+        </main>
+    </body>
+</html>

@@ -1,0 +1,173 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header > a {
+    background-color: #0e0e0e;
+    border: 1px solid #0000dd;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.7) 5px 5px 5px;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    user-select: none;
+}
+
+header > a:hover {
+    box-shadow: rgba(0, 0, 0, 0.7) 7px 7px 7px;
+    transform: scale(1.02, 1.02);
+}
+
+header > a:hover:active {
+    box-shadow: none;
+    transform: scale(0.95, 0.95);
+}
+
+header > a:empty {
+    visibility: hidden;
+}
+
+header > a#prev-excercise::before {
+    content: "⮜";
+    margin-right: 15px;
+}
+
+header > a#next-excercise::after {
+    content: "⮞";
+    margin-left: 15px;
+}
+
+main {
+    height: 100%;
+    display: flex;
+}
+
+main > .excercise {
+    width: 100%;
+    padding-top: 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+main > .excercise h1 {
+    font-size: 50px;
+    margin-top: 0;
+}
+
+main > .excercise .information {
+    display: flex;
+    background-color: #333333;
+    border-radius: 10px;
+}
+
+main > .excercise .information div {
+    padding: 10px 20px;
+}
+
+main > .excercise > .steps {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.excercise > .steps > .excercise {
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 600px;
+    display: grid;
+    grid-template:
+        "name info"
+        "steps steps";
+    background-color: #333333;
+    border-radius: 10px;
+    margin-top: 35px;
+}
+
+.excercise > .steps > .excercise.active {
+    background-color: rgba(0, 255, 0, 0.4);
+    border: 1px solid #00ff00;
+}
+
+.excercise > .steps > .excercise > h1 {
+    grid-area: name-start;
+    font-size: 30px;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.excercise > .steps > .excercise > .information {
+    display: flex;
+    grid-area: info-start;
+    justify-self: end;
+    align-self: start;
+}
+
+.excercise > .steps > .excercise > .information div {
+    padding: 10px 20px;
+}
+
+.excercise > .steps > .excercise > .steps {
+    grid-area: steps;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.timer {
+    width: 400px;
+    height: 80px;
+    background: linear-gradient(to top, transparent 10px, #1e1e1e 10px, #1e1e1e 70px, transparent 70px), linear-gradient(to left, #fff var(--progress), #1e1e1e var(--progress));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 50px;
+    margin-top: 10px;
+    --time: 0ms;
+    --progress: 100%;
+    align-self: center;
+}
+
+.timer.circular {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle 70px, #0e0e0e 0% 98%, transparent), conic-gradient(#fff var(--progress), #1e1e1e var(--progress));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 25px;
+    margin-top: 10px;
+    --time: 0ms;
+    --progress: 100%;
+}
+
+main > .excercise > .steps >.timer.countdown {
+    background: linear-gradient(to top, transparent 10px, #00bb00 10px, #00bb00 70px, transparent 70px), linear-gradient(to left, #fff var(--progress), #1e1e1e var(--progress));
+}
+
+.excercise > .steps > .excercise:not(.active) > .steps > .timer {
+    display: none;
+}
