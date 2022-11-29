@@ -33,6 +33,8 @@ class Timer {
         this.#startTime = Date.now();
         this.#element.classList.add('countdown');
 
+        let preFinishBeeps = this.#time >= 5000 ? 3 : 0;
+
         return new Promise((resolve) => {
             this.#resolvePromise = resolve;
 
@@ -47,17 +49,22 @@ class Timer {
 
                 if (elapsed >= Math.abs(this.#time)) {
                     this.#displayTime(0);
-                    this.#startTime = 0
-                    resolve();
+                    Beeper.beep(300, 660, 100);
                     this.#element.classList.remove('countdown');
+
+                    this.#startTime = 0
+
+                    resolve();
                     return;
                 }
 
-                if (this.#time < 0) {
-                    this.#displayTime(this.#time + elapsed);
-                }
-                else {
-                    this.#displayTime(this.#time - elapsed);
+                const remaining = this.#time < 0 ? this.#time + elapsed : this.#time - elapsed;
+                this.#displayTime(remaining);
+
+                const secondsTillFinish = Math.abs(remaining) / 1000;
+                if (secondsTillFinish < preFinishBeeps) {
+                    Beeper.beep(200, 440, 100);
+                    preFinishBeeps = Math.floor(secondsTillFinish);
                 }
 
                 window.requestAnimationFrame(update);
