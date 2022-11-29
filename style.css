@@ -8,6 +8,8 @@ body {
     background-color: #1e1e1e;
     color: #ffffff;
     font-family: sans-serif;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 header {
@@ -17,6 +19,7 @@ header {
     right: 10px;
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 header > a {
@@ -29,6 +32,7 @@ header > a {
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s;
     user-select: none;
+    max-width: 50%;
 }
 
 header > a:hover {
@@ -56,8 +60,9 @@ header > a#next-excercise::after {
 }
 
 main {
-    height: 100%;
+    padding-bottom: 100px;
     display: flex;
+    box-sizing: border-box;
 }
 
 main > .excercise {
@@ -70,9 +75,10 @@ main > .excercise {
     flex-shrink: 0;
 }
 
-main > .excercise h1 {
+main > .excercise > h1 {
     font-size: 50px;
     margin-top: 0;
+    text-align: center;
 }
 
 main > .excercise .information {
@@ -99,9 +105,10 @@ main > .excercise > .steps {
     grid-template:
         "name info"
         "steps steps";
-    background-color: #333333;
     border-radius: 10px;
     margin-top: 35px;
+    background-color: rgba(0, 0, 255, 0.4);
+    border: 1px solid #44f;
 }
 
 .excercise > .steps > .excercise.active {
@@ -170,4 +177,31 @@ main > .excercise > .steps >.timer.countdown {
 
 .excercise > .steps > .excercise:not(.active) > .steps > .timer {
     display: none;
+}
+
+@media (width < 1000px) {
+    main {
+        padding-top: 90px;
+    }
+    
+    .excercise > .steps > .excercise {
+        min-width: unset;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .excercise > .steps > .excercise > h1 {
+        margin: 0;
+        text-align: center;
+    }
+    
+    .excercise > .steps > .excercise > .information {
+        display: flex;
+        align-self: center;
+        margin-top: 10px;
+    }
+
+    .timer {
+        width: 300px;
+    }
 }
