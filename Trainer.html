@@ -11,11 +11,12 @@
         <script src="Timer.js"></script>
         <script src="Beeper.js"></script>
         <script>
-            const workout = {
-                name: "Skigymnastik",
+            const workout1 = {
+                name: "Skigymnastik 1",
                 excercises: [
                     {
                         name: "Aufwärmen",
+                        rest: 20,
                         steps: [
                             {
                                 name: "Schulterkreisen",
@@ -154,11 +155,117 @@
                 ]
             };
 
+            const workout2 = {
+                name: "Skigymnastik 2",
+                excercises: [
+                    {
+                        name: "Aufwärmen",
+                        rest: 20,
+                        steps: [
+                            {
+                                name: "Schulterkreisen",
+                                duration: 30
+                            },
+                            {
+                                name: "Seitlich neigen",
+                                duration: 30
+                            },
+                            {
+                                name: "Vornüber neigen",
+                                repetitions: 10
+                            },
+                            {
+                                name: "Kniehebelauf",
+                                duration: 60
+                            }
+                        ]
+                    },
+                    {
+                        name: "Kniebeugen",
+                        repetitions: 3,
+                        rest: 30,
+                        steps: [
+                            {
+                                name: "Kniebeugen vorne",
+                                repetitions: 10
+                            },
+                            {
+                                name: "Einbein-Kniebeugen",
+                                repetitions: 10,
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Taillenmacher",
+                        repetitions: 2,
+                        rest: 15,
+                        steps: [
+                            {
+                                name: "Taillenmacher",
+                                duration: 30,
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Kistensprung",
+                        repetitions: 3,
+                        duration: 30,
+                        rest: 30
+                    },
+                    {
+                        name: "Klimmzüge und Wechselbrett",
+                        repetitions: 2,
+                        rest: 30,
+                        steps: [
+                            {
+                                name: "Klimmzüge",
+                                repetitions: 10
+                            },
+                            {
+                                name: "Wechselbrett",
+                                repetitions: 5,
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Seitlicher Ausfallschritt",
+                        repetitions: 3,
+                        rest: 20,
+                        steps: [
+                            {
+                                name: "Seitlicher Ausfallschritt",
+                                repetitions: 15,
+                                perSide: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "Burpees und Seithalte",
+                        repetitions: 2,
+                        rest: 15,
+                        steps: [
+                            {
+                                name: "Burpees",
+                                duration: 30
+                            },
+                            {
+                                name: "Seithalte",
+                                duration: 30,
+                                perSide: true
+                            }
+                        ]
+                    }
+                ]
+            }
+
             let trainer;
 
             window.addEventListener('load', () => {
                 trainer = new Trainer();
-                trainer.loadWorkout(workout);
+                trainer.loadWorkout(workout2);
             });
         </script>
     </head>
