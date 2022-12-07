@@ -27,10 +27,10 @@ class Trainer {
 
         document.addEventListener("keydown", (event) => {
             switch (event.key) {
-                case "ArrowRight":
+                case "ArrowLeft":
                     this.gotoExcercise(this.#currentExcercise - 1);
                     break;
-                case "ArrowLeft":
+                case "ArrowRight":
                     this.gotoExcercise(this.#currentExcercise + 1);
                     break;
                 case " ":
