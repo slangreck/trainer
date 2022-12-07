@@ -45,7 +45,7 @@ class Excercise extends Step {
         }
 
         if (this.#perSide && (this.#steps.length > 0 || this.timer) && !excerciseInfo.rest) {
-            const switchSides = new Rest(3, "Switch Sides");
+            const switchSides = new Rest(5, "Switch Sides");
             this.#steps.push(switchSides);
             this.display.appendStep(switchSides);
         }
@@ -72,45 +72,41 @@ class Excercise extends Step {
                     let timerInSteps = false;
                     let rest = null;
 
-                    if (this.#steps) {
-                        let activeStepPromises = [];
-                        for (const step of this.#steps) {
-                            if (step instanceof Rest && this.timer) {
-                                rest = step;
-                                continue;
-                            }
+                    let activeStepPromises = [];
+                    for (const step of this.#steps) {
+                        if (step instanceof Rest && this.timer) {
+                            rest = step;
+                            continue;
+                        }
 
-                            if (step.hasTimer) {
-                                if (activeStepPromises.length > 0) {
-                                    await Promise.allSettled(activeStepPromises);
-                                    activeStepPromises = [];
+                        if (step.hasTimer) {
+                            if (activeStepPromises.length > 0) {
+                                await Promise.allSettled(activeStepPromises);
+                                activeStepPromises = [];
 
-                                    if (!this.isActive) {
-                                        return;
-                                    }
-                                }
-                                timerInSteps = true;
-                                await step.start();
-                                    
                                 if (!this.isActive) {
                                     return;
                                 }
-                            } else {
-                                activeStepPromises.push(step.start());
                             }
-                        }
-
-                        if (!this.timer) {
-                            await Promise.allSettled(activeStepPromises);
-                            activeStepPromises = [];
-                                    
+                            timerInSteps = true;
+                            await step.start();
+                                
                             if (!this.isActive) {
                                 return;
                             }
+                        } else {
+                            activeStepPromises.push(step.start());
                         }
                     }
 
-                    if (this.timer && !timerInSteps) {
+                    if (!this.timer) {
+                        await Promise.allSettled(activeStepPromises);
+                        activeStepPromises = [];
+                                
+                        if (!this.isActive) {
+                            return;
+                        }
+                    } else if (!timerInSteps) {
                         await this.timer.start();
                                     
                         if (!this.isActive) {
