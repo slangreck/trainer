@@ -86,11 +86,15 @@ class Timer {
     }
 
     #displayTime(milliSeconds) {
+        this.#element.textContent = Timer.formatDuration(milliSeconds);
+        this.#element.style.setProperty("--progress", (this.#time !== 0 ? milliSeconds / this.#time * 100 : 100) + "%");
+    }
+
+    static formatDuration(milliSeconds) {        
         const seconds = Math.abs(milliSeconds) / 1000;
         const minutePart = Math.floor(seconds / 60);
         const secondPart = seconds % 60;
 
-        this.#element.textContent = `${milliSeconds < 0 ? "-" : ""}${minutePart < 10 ? "0" + minutePart : minutePart}:${secondPart < 10 ? "0" + secondPart.toFixed(2) : secondPart.toFixed(2)}`;
-        this.#element.style.setProperty("--progress", (this.#time !== 0 ? milliSeconds / this.#time * 100 : 100) + "%");
+        return `${milliSeconds < 0 ? "-" : ""}${minutePart < 10 ? "0" + minutePart : minutePart}:${secondPart < 10 ? "0" + secondPart.toFixed(2) : secondPart.toFixed(2)}`;
     }
 }

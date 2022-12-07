@@ -1,25 +1,32 @@
 class Trainer {
     #prev;
     #next;
-    #main;
+    #selection;
+    #workout;
+    #finished;
+    #totalTime;
 
     #excercises = [];
-    #currentExcercise = 0;
+    #currentExcercise = null;
+    #currentPage = 0;
     #running = false;
 
-    constructor() {
+    constructor(workouts) {
         this.#prev = document.querySelector("#prev-excercise");
         this.#next = document.querySelector("#next-excercise");
-        this.#main = document.querySelector("main");
+        this.#selection = document.querySelector("#selection > nav");
+        this.#workout = document.querySelector("#workout");
+        this.#finished = document.querySelector("#finished");
+        this.#totalTime = document.querySelector("#total-time");
 
-        window.addEventListener("resize", () => this.gotoExcercise(this.#currentExcercise, false, false));
+        window.addEventListener("resize", () => this.gotoPage(this.#currentPage, false, false));
 
-        this.#prev.addEventListener("click", () => this.gotoExcercise(this.#currentExcercise - 1));
-        this.#next.addEventListener("click", () => this.gotoExcercise(this.#currentExcercise + 1));
+        this.#prev.addEventListener("click", () => this.gotoPage(this.#currentPage - 1));
+        this.#next.addEventListener("click", () => this.gotoPage(this.#currentPage + 1));
 
-        this.#main.addEventListener("click", () => {
+        this.#workout.addEventListener("click", () => {
             if (this.#running) {
-                this.#excercises[this.#currentExcercise].advance();
+                this.#currentExcercise?.advance();
             } else {
                 this.start();
             }
@@ -28,14 +35,14 @@ class Trainer {
         document.addEventListener("keydown", (event) => {
             switch (event.key) {
                 case "ArrowLeft":
-                    this.gotoExcercise(this.#currentExcercise - 1);
+                    this.gotoPage(this.#currentPage - 1);
                     break;
                 case "ArrowRight":
-                    this.gotoExcercise(this.#currentExcercise + 1);
+                    this.gotoPage(this.#currentPage + 1);
                     break;
                 case " ":
                     if (this.#running) {
-                        this.#excercises[this.#currentExcercise].advance();
+                        this.#currentExcercise?.advance();
                     } else {
                         this.start();
                     }
@@ -63,10 +70,20 @@ class Trainer {
             }*/
         });
         
+        this.showWorkoutChoices(workouts);
+    }
+
+    showWorkoutChoices(workouts) {
+        for (const workout of workouts) {
+            const option = this.#selection.appendChild(document.createElement("a"));
+            option.textContent = workout.name;
+            option.addEventListener("click", () => this.loadWorkout(workout));
+        }
     }
 
     loadWorkout(workout) {
         const fragment = document.createDocumentFragment();
+        this.#excercises = [];
 
         for (const excerciseInfo of workout.excercises) {
             const excercise = new Excercise(excerciseInfo);
@@ -74,41 +91,71 @@ class Trainer {
             fragment.appendChild(excercise.element);
         }
 
-        for (const child of this.#main.children) {
-            child.remove();
+        while (this.#workout.firstElementChild) {
+            this.#workout.firstElementChild.remove();
         }
 
-        this.#main.appendChild(fragment);
+        this.#workout.appendChild(fragment);
 
-        this.gotoExcercise(0);
+        this.gotoPage(1);
     }
 
-    gotoExcercise(index, endExcercise = true, animate = true) {
+    gotoPage(index, endExcercise = true, animate = true) {
         if (this.#running && endExcercise) {
             this.#running = false;
-            this.#excercises[this.#currentExcercise].end();
+            this.#currentExcercise?.end();
+            this.#currentExcercise = null;
         }
 
-        this.#currentExcercise = Math.max(Math.min(index, this.#excercises.length - 1), 0);
-        window.scrollTo({ left: window.innerWidth * this.#currentExcercise, top: 0, behavior: animate ? "smooth" : "instant" });
+        this.#currentPage = Math.max(Math.min(index, this.#excercises.length + 1), 0);
+        window.scrollTo({ left: window.innerWidth * (this.#currentPage), top: 0, behavior: animate ? "smooth" : "instant" });
 
-        this.#prev.textContent = this.#currentExcercise > 0 ? this.#excercises[this.#currentExcercise - 1].name : "";
-        this.#next.textContent = this.#currentExcercise < this.#excercises.length - 1 ? this.#excercises[this.#currentExcercise + 1].name : "";
+        this.#prev.textContent = this.getPageName(this.#currentPage - 1);
+        this.#next.textContent = this.getPageName(this.#currentPage + 1);
+    }
+
+    getPageName(pageIndex) {
+        if (pageIndex < 0 || pageIndex > this.#excercises.length + 1) {
+            return "";
+        }
+
+        if (pageIndex === 0) {
+            return "Select Workout";
+        }
+
+        if (pageIndex === this.#excercises.length + 1) {
+            return this.#finished.classList.contains("hidden") ? "" : "Finish";
+        }
+
+        return this.#excercises[pageIndex - 1].name;
     }
 
     async start() {
+        const startTime = Date.now();
+
         this.#running = true;
-        for (let i = this.#currentExcercise; i < this.#excercises.length; i++) {
+
+        this.#finished.classList.remove("hidden");
+
+        for (let i = this.#currentPage - 1; i < this.#excercises.length; i++) {
             if (!this.#running) {
+                this.#currentExcercise = null;
                 return;
             }
 
-            const promise = this.#excercises[i].start();
-            this.gotoExcercise(i, false);
+            this.#currentExcercise = this.#excercises[i];
+
+            const promise = this.#currentExcercise.start();
+            this.gotoPage(i + 1, false);
             await promise;
         }
 
         this.#running = false;
-        this.gotoExcercise(0);
+        this.#currentExcercise = null;
+
+        const elapsed = Date.now() - startTime;
+        this.#totalTime.textContent = Timer.formatDuration(elapsed);
+
+        this.gotoPage(this.#excercises.length + 1);
     }
 }

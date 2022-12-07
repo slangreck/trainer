@@ -3,13 +3,13 @@ html {
 }
 
 body {
-    height: 100%;
     margin: 0;
     background-color: #1e1e1e;
     color: #ffffff;
     font-family: sans-serif;
     word-break: break-word;
     hyphens: auto;
+    display: flex;
 }
 
 header {
@@ -59,14 +59,8 @@ header > a#next-excercise::after {
     margin-left: 15px;
 }
 
-main {
-    padding-bottom: 100px;
-    display: flex;
-    box-sizing: border-box;
-}
-
-main > .excercise {
-    width: 100%;
+#selection, #finished {
+    width: 100vw;
     padding-top: 35px;
     box-sizing: border-box;
     display: flex;
@@ -75,23 +69,64 @@ main > .excercise {
     flex-shrink: 0;
 }
 
-main > .excercise > h1 {
+#selection h1, #finished h1 {
+    font-size: 50px;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#selection a {
+    display: block;
+    background-color: #0e0e0e;
+    border: 1px solid #0000dd;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.7) 5px 5px 5px;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    user-select: none;
+    margin-bottom: 10px;
+}
+
+#finished.hidden {
+    display: none;
+}
+
+#workout {
+    padding-bottom: 100px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+#workout > .excercise {
+    width: 100vw;
+    padding-top: 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#workout > .excercise > h1 {
     font-size: 50px;
     margin-top: 0;
     text-align: center;
 }
 
-main > .excercise .information {
+#workout > .excercise .information {
     display: flex;
     background-color: #333333;
     border-radius: 10px;
 }
 
-main > .excercise .information div {
+#workout > .excercise .information div {
     padding: 10px 20px;
 }
 
-main > .excercise > .steps {
+#workout > .excercise > .steps {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -171,7 +206,7 @@ main > .excercise > .steps {
     --progress: 100%;
 }
 
-main > .excercise > .steps >.timer.countdown {
+#workout > .excercise > .steps >.timer.countdown {
     background: linear-gradient(to top, transparent 10px, #00bb00 10px, #00bb00 70px, transparent 70px), linear-gradient(to left, #fff var(--progress), #1e1e1e var(--progress));
 }
 
@@ -180,7 +215,7 @@ main > .excercise > .steps >.timer.countdown {
 }
 
 @media (width < 1000px) {
-    main {
+    body {
         padding-top: 90px;
     }
     

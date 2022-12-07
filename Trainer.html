@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <title>Trainer</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="./style.css">
-        <script src="Trainer.js"></script>
-        <script src="Step.js"></script>
-        <script src="Excercise.js"></script>
-        <script src="Rest.js"></script>
-        <script src="StepDisplay.js"></script>
-        <script src="Timer.js"></script>
-        <script src="Beeper.js"></script>
-        <script>
-            const workout1 = {
+
+<head>
+    <title>Trainer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./style.css">
+    <script src="Trainer.js"></script>
+    <script src="Step.js"></script>
+    <script src="Excercise.js"></script>
+    <script src="Rest.js"></script>
+    <script src="StepDisplay.js"></script>
+    <script src="Timer.js"></script>
+    <script src="Beeper.js"></script>
+    <script>
+        const workouts = [
+            {
                 name: "Skigymnastik 1",
                 excercises: [
                     {
@@ -134,7 +136,7 @@
                             },
                             {
                                 name: "Ein-Auswärts-Dreher",
-                                duration: 30, 
+                                duration: 30,
                                 perSide: true
                             }
                         ]
@@ -155,9 +157,8 @@
                         ]
                     }
                 ]
-            };
-
-            const workout2 = {
+            },
+            {
                 name: "Skigymnastik 2",
                 excercises: [
                     {
@@ -262,22 +263,30 @@
                     }
                 ]
             }
+        ];
 
-            let trainer;
+        let trainer;
 
-            window.addEventListener('load', () => {
-                trainer = new Trainer();
-                trainer.loadWorkout(workout1);
-            });
-        </script>
-    </head>
-    <body>
-        <header>
-            <a id="prev-excercise"></a>
-            <a id="next-excercise"></a>
-        </header>
-        <main>
+        window.addEventListener('load', () => {
+            trainer = new Trainer(workouts);
+        });
+    </script>
+</head>
 
-        </main>
-    </body>
+<body>
+    <header>
+        <a id="prev-excercise"></a>
+        <a id="next-excercise"></a>
+    </header>
+    <div id="selection">
+        <h1>Choose Your Workout:</h1>
+        <nav></nav>
+    </div>
+    <div id="workout"></div>
+    <div id="finished" class="hidden">
+        <h1>Congratulations, you did it!</h1>
+        <h2>Total time: <span id="total-time"></span></h2>
+    </div>
+</body>
+
 </html>
