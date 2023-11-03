@@ -1,6 +1,12 @@
 class Beeper {
     static audioContext;
 
+    static initialize() {
+        if (!Beeper.audioContext) {
+            Beeper.audioContext = new AudioContext();
+        }
+    }
+
     static beep(duration = 200, frequency = 440, volume = 100) {
         if (!Beeper.audioContext) {
             Beeper.audioContext = new AudioContext();

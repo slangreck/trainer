@@ -98,6 +98,8 @@ class Trainer {
         this.#workout.appendChild(fragment);
 
         this.gotoPage(1);
+
+        Beeper.initialize();
     }
 
     gotoPage(index, endExcercise = true, animate = true) {
