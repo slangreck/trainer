@@ -10,6 +10,7 @@ class Trainer {
     #currentExcercise = null;
     #currentPage = 0;
     #running = false;
+    #startTime = 0;
 
     constructor(workouts) {
         this.#prev = document.querySelector("#prev-excercise");
@@ -84,6 +85,7 @@ class Trainer {
     loadWorkout(workout) {
         const fragment = document.createDocumentFragment();
         this.#excercises = [];
+        this.#startTime = 0;
 
         for (const excerciseInfo of workout.excercises) {
             const excercise = new Excercise(excerciseInfo);
@@ -133,7 +135,9 @@ class Trainer {
     }
 
     async start() {
-        const startTime = Date.now();
+        if (!this.#startTime) {
+            this.#startTime = Date.now();
+        }
 
         this.#running = true;
 
@@ -155,7 +159,7 @@ class Trainer {
         this.#running = false;
         this.#currentExcercise = null;
 
-        const elapsed = Date.now() - startTime;
+        const elapsed = Date.now() - this.#startTime;
         this.#totalTime.textContent = Timer.formatDuration(elapsed);
 
         this.gotoPage(this.#excercises.length + 1);
