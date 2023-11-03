@@ -1,8 +1,8 @@
 class Rest extends Step {
-    constructor(duration, label = "Rest") {   
+    constructor(duration, label = "Erholung") {
         super();
 
-        this.display = new StepDisplay(label, { duration: { value: duration, label: "Seconds" } });
+        this.display = new StepDisplay(label, { duration: { value: duration, label: "Sekunden" } });
         
         this.timer = new Timer();
         this.timer.setTime(duration);

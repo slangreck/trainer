@@ -12,14 +12,14 @@ class Excercise extends Step {
         this.#repetitions = excerciseInfo.repetitions ?? 1;
         this.#perSide = excerciseInfo.perSide ?? false;
 
-        const infos = { repetitions: { value: this.#repetitions, label: `Repetitions${excerciseInfo.perSide ? " per Side" : ""}` } };
+        const infos = { repetitions: { value: this.#repetitions, label: `Wiederholungen${excerciseInfo.perSide ? " pro Seite" : ""}` } };
 
         if (excerciseInfo.duration) {
-            infos.duration = { value: excerciseInfo.duration, label: "Seconds Load"};
+            infos.duration = { value: excerciseInfo.duration, label: "Sekunden Belastung"};
         }
 
         if (excerciseInfo.rest) {
-            infos.rest = { value: excerciseInfo.rest, label: "Seconds Rest"};
+            infos.rest = { value: excerciseInfo.rest, label: "Sekunden Erholung"};
         }
         
         this.display = new StepDisplay(excerciseInfo.name, infos);
@@ -45,7 +45,7 @@ class Excercise extends Step {
         }
 
         if (this.#perSide && (this.#steps.length > 0 || this.timer) && !excerciseInfo.rest) {
-            const switchSides = new Rest(5, "Switch Sides");
+            const switchSides = new Rest(5, "Seiten wechseln");
             this.#steps.push(switchSides);
             this.display.appendStep(switchSides);
         }

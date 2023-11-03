@@ -124,11 +124,11 @@ class Trainer {
         }
 
         if (pageIndex === 0) {
-            return "Select Workout";
+            return "Workout auswählen";
         }
 
         if (pageIndex === this.#excercises.length + 1) {
-            return this.#finished.classList.contains("hidden") ? "" : "Finish";
+            return this.#finished.classList.contains("hidden") ? "" : "Fertig";
         }
 
         return this.#excercises[pageIndex - 1].name;
