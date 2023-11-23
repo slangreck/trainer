@@ -1,4 +1,6 @@
 class StepDisplay {
+    static #scrollAnimationFrame = 0;
+
     #element;
     #stepsElement;
 
@@ -31,12 +33,27 @@ class StepDisplay {
     set isActive(value) {
         this.#element.classList.toggle("active", value);
         if (value) {
-            this.#element.scrollIntoView({ behavior: "smooth", block: "center" });
+            this.scrollIntoView();
         }
     }
 
     get isActive() {
         return this.#element.classList.contains("active");
+    }
+
+    scrollIntoView() {
+        if (StepDisplay.#scrollAnimationFrame) {
+            window.cancelAnimationFrame(StepDisplay.#scrollAnimationFrame);
+        }
+
+        return new Promise((resolve) => {
+            StepDisplay.#scrollAnimationFrame = window.requestAnimationFrame(() => {
+                StepDisplay.#scrollAnimationFrame = 0;
+                let verticalPosition = this.#element.parentElement.id === "workout" || this.#element.offsetHeight > document.querySelector("html").clientHeight ? "start" : "center";
+                this.#element.scrollIntoView({ behavior: "smooth", block: verticalPosition });
+                resolve();
+            });
+        });
     }
 
     appendStep(step) {

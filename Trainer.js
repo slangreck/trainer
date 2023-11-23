@@ -105,7 +105,7 @@ class Trainer {
     }
 
     gotoPage(index, endExcercise = true, animate = true) {
-        if (this.#running && endExcercise) {
+        if (this.#running && endExcercise && this.#excercises[index - 1] !== this.#currentExcercise) {
             this.#running = false;
             this.#currentExcercise?.end();
             this.#currentExcercise = null;
@@ -151,7 +151,12 @@ class Trainer {
 
             this.#currentExcercise = this.#excercises[i];
 
-            const promise = this.#currentExcercise.start();
+            const promise = this.#currentExcercise.start(async () => {
+                if (i + 1 < this.#excercises.length) {
+                    await this.#excercises[i + 1].preview();
+                    this.gotoPage(i + 2, false);
+                }
+            });
             this.gotoPage(i + 1, false);
             await promise;
         }

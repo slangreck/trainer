@@ -33,6 +33,28 @@ class Timer {
         this.#startTime = Date.now();
         this.#element.classList.add('countdown');
 
+        const clientBounds = this.#element.getBoundingClientRect();
+        const bounds = {
+            left: clientBounds.left + window.scrollX,
+            right: clientBounds.right + window.scrollX,
+            top: clientBounds.top + window.scrollY,
+            bottom: clientBounds.bottom + window.scrollY,
+        }
+        const htmlElement = document.querySelector('html');
+
+        const handleScroll = () => {
+            this.#element.classList.toggle(
+                'hero',
+                window.scrollX > bounds.left ||
+                window.scrollY > bounds.top ||
+                window.scrollX + htmlElement.clientWidth < bounds.right ||
+                window.scrollY + htmlElement.clientHeight < bounds.bottom
+            );
+        };
+
+        document.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
+
         let preFinishBeeps = this.#time >= 5000 ? 3 : 0;
 
         return new Promise((resolve) => {
@@ -40,6 +62,8 @@ class Timer {
 
             const update = () => {
                 if (this.#startTime === 0) {
+                    document.removeEventListener('scroll', handleScroll);
+                    window.removeEventListener('resize', handleScroll);
                     resolve();
                     this.#element.classList.remove('countdown');
                     return;
@@ -53,6 +77,8 @@ class Timer {
                     this.#element.classList.remove('countdown');
 
                     this.#startTime = 0
+                    document.removeEventListener('scroll', handleScroll);
+                    window.removeEventListener('resize', handleScroll);
 
                     resolve();
                     return;

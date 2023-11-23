@@ -59,23 +59,33 @@ class Excercise extends Step {
         return super.hasTimer || this.#steps.some((step) => step.hasTimer);
     }
 
-    start() {
+    start(lastRestStarted) {
         super.start();
 
         return new Promise(async (resolve) => {
             this.resolvePromise = resolve;
 
             if (this.#steps.length > 0 || this.hasTimer) {
-                for (let i = 1; i <= this.#repetitions + 0.5; i += this.#perSide ? 0.5 : 1) {
-                    this.display.updateInfo("repetitions", `${Math.floor(i)} / ${this.#repetitions}`);
+                for (let repetition = 1; repetition < this.#repetitions + 1; repetition += this.#perSide ? 0.5 : 1) {
+                    this.display.updateInfo("repetitions", `${Math.floor(repetition)} / ${this.#repetitions}`);
+                    const lastRepetition = repetition === (this.#perSide ? this.#repetitions + 0.5 : this.#repetitions);
 
                     let timerInSteps = false;
                     let rest = null;
 
                     let activeStepPromises = [];
-                    for (const step of this.#steps) {
-                        if (step instanceof Rest && this.timer) {
+                    let step = null;
+                    for (const nextStep of this.#steps.concat([null])) {
+                        if (!step) {
+                            step = nextStep;
+                            continue;
+                        }
+
+                        const isRest = step instanceof Rest;
+
+                        if (isRest && this.timer) {
                             rest = step;
+                            step = nextStep;
                             continue;
                         }
 
@@ -88,15 +98,39 @@ class Excercise extends Step {
                                     return;
                                 }
                             }
+
                             timerInSteps = true;
-                            await step.start();
+
+                            if (isRest) {
+                                if (lastRepetition) {
+                                    lastRestStarted();
+                                } else {
+                                    this.preview();
+                                }
+                            }
+
+                            await step.start(() => {
+                                if (nextStep) {
+                                    nextStep.preview();
+                                } else if (!this.#steps.some((step) => step instanceof Rest)) {
+                                    lastRestStarted();
+                                }
+                            });
                                 
                             if (!this.isActive) {
                                 return;
                             }
                         } else {
-                            activeStepPromises.push(step.start());
+                            activeStepPromises.push(step.start(() => {
+                                if (nextStep) {
+                                    nextStep.preview();
+                                } else if (!this.#steps.some((step) => step instanceof Rest)) {
+                                    lastRestStarted();
+                                }
+                            }));
                         }
+
+                        step = nextStep;
                     }
 
                     if (!this.timer) {
@@ -115,6 +149,12 @@ class Excercise extends Step {
                     }
 
                     if (rest) {
+                        if (lastRepetition) {
+                            lastRestStarted();
+                        } else {
+                            this.preview();
+                        }
+
                         await rest.start();
                                     
                         if (!this.isActive) {

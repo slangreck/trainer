@@ -191,7 +191,10 @@ header > a#next-excercise::after {
     align-self: center;
 }
 
-.timer.circular {
+.timer.hero {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
     width: 150px;
     height: 150px;
     border-radius: 50%;

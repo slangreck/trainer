@@ -1,4 +1,6 @@
 class Step {
+    static #previewTimeout = 0;
+
     display;
     timer = null;
 
@@ -16,6 +18,20 @@ class Step {
 
     get isActive() {
         return this.display.isActive;
+    }
+
+    preview() {
+        if (Step.#previewTimeout) {
+            clearTimeout(Step.#previewTimeout);
+        }
+
+        return new Promise((resolve) => {
+            Step.#previewTimeout = setTimeout(async () => {
+                Step.#previewTimeout = 0;
+                await this.display.scrollIntoView();
+                resolve();
+            }, 2000);
+        });
     }
 
     start() {
