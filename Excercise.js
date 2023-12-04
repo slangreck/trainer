@@ -45,7 +45,7 @@ class Excercise extends Step {
         }
 
         if (this.#perSide && (this.#steps.length > 0 || this.timer) && !excerciseInfo.rest) {
-            const switchSides = new Rest(5, "Seiten wechseln");
+            const switchSides = new Rest(5, "Seiten wechseln", true);
             this.#steps.push(switchSides);
             this.display.appendStep(switchSides);
         }
@@ -82,6 +82,11 @@ class Excercise extends Step {
                         }
 
                         const isRest = step instanceof Rest;
+
+                        if (isRest && lastRepetition && step.isSwitchSides) {
+                            step = nextStep;
+                            continue;
+                        }
 
                         if (isRest && this.timer) {
                             rest = step;

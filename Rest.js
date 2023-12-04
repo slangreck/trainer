@@ -1,6 +1,10 @@
 class Rest extends Step {
-    constructor(duration, label = "Erholung") {
+    #isSwitchSides;
+
+    constructor(duration, label = "Erholung", isSwitchSides = false) {
         super();
+
+        this.#isSwitchSides = isSwitchSides;
 
         this.display = new StepDisplay(label, { duration: { value: duration, label: "Sekunden" } });
         
@@ -22,5 +26,9 @@ class Rest extends Step {
 
     advance() {
         this.end();
+    }
+
+    get isSwitchSides() {
+        return this.#isSwitchSides;
     }
 }
