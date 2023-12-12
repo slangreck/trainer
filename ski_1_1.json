@@ -1,5 +1,5 @@
 {
-    "name": "Skigymnastik 1 - Stufe 3",
+    "name": "Skigymnastik 1 - Stufe 1",
     "excercises": [
         {
             "name": "Aufwärmen",
@@ -19,13 +19,13 @@
                 },
                 {
                     "name": "Kniehebelauf",
-                    "duration": 60
+                    "duration": 40
                 }
             ]
         },
         {
             "name": "Leg Blasters",
-            "repetitions": 4,
+            "repetitions": 2,
             "rest": 30,
             "steps": [
                 {
@@ -50,28 +50,28 @@
         },
         {
             "name": "Russischer Twist",
-            "repetitions": 3,
+            "repetitions": 2,
             "duration": 30,
             "rest": 15
         },
         {
             "name": "Seitsprünge mit Halten",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
                     "name": "Seitsprung über Hindernis",
-                    "duration": 30
+                    "duration": 20
                 },
                 {
                     "name": "Halten in Abfahrtsposition",
-                    "duration": 30
+                    "duration": 20
                 }
             ]
         },
         {
             "name": "Oberkörperstabilisation und Rücken",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
@@ -87,7 +87,7 @@
         },
         {
             "name": "Jane Fonda plus",
-            "repetitions": 2,
+            "repetitions": 1,
             "rest": 30,
             "steps": [
                 {
@@ -96,19 +96,19 @@
                     "steps": [
                         {
                             "name": "Heben und Senken",
-                            "duration": 30
+                            "duration": 25
                         },
                         {
                             "name": "Knie zur Brust",
-                            "duration": 30
+                            "duration": 25
                         },
                         {
                             "name": "Ferse zum Po",
-                            "duration": 30
+                            "duration": 25
                         },
                         {
                             "name": "Kreisen lassen",
-                            "duration": 30
+                            "duration": 25
                         }
                     ]
                 },
@@ -126,7 +126,7 @@
         },
         {
             "name": "Ganzkörper",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {

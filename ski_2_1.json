@@ -1,5 +1,5 @@
 {
-    "name": "Skigymnastik 2 - Stufe 3",
+    "name": "Skigymnastik 2 - Stufe 1",
     "excercises": [
         {
             "name": "Aufwärmen",
@@ -19,42 +19,42 @@
                 },
                 {
                     "name": "Kniehebelauf",
-                    "duration": 60
+                    "duration": 40
                 }
             ]
         },
         {
             "name": "Kniebeugen",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 30,
             "steps": [
                 {
                     "name": "Kniebeugen vorne",
-                    "repetitions": 15
+                    "repetitions": 10
                 },
                 {
                     "name": "Einbein-Kniebeugen",
-                    "repetitions": 15,
+                    "repetitions": 10,
                     "perSide": true
                 }
             ]
         },
         {
             "name": "Taillenmacher",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
                     "name": "Taillenmacher",
-                    "duration": 30,
+                    "duration": 20,
                     "perSide": true
                 }
             ]
         },
         {
             "name": "Kistensprung",
-            "repetitions": 3,
-            "duration": 30,
+            "repetitions": 2,
+            "duration": 20,
             "rest": 30
         },
         {
@@ -64,18 +64,18 @@
             "steps": [
                 {
                     "name": "Klimmzüge",
-                    "repetitions": 10
+                    "repetitions": 5
                 },
                 {
                     "name": "Wechselbrett",
-                    "repetitions": 10,
+                    "repetitions": 5,
                     "perSide": true
                 }
             ]
         },
         {
             "name": "Seitlicher Ausfallschritt",
-            "repetitions": 4,
+            "repetitions": 3,
             "rest": 20,
             "steps": [
                 {
@@ -87,16 +87,16 @@
         },
         {
             "name": "Burpees und Seithalte",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
                     "name": "Burpees",
-                    "duration": 30
+                    "duration": 20
                 },
                 {
                     "name": "Seithalte",
-                    "duration": 30,
+                    "duration": 20,
                     "perSide": true
                 }
             ]

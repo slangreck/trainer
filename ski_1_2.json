@@ -1,5 +1,5 @@
 {
-    "name": "Skigymnastik 1 - Stufe 3",
+    "name": "Skigymnastik 1 - Stufe 2",
     "excercises": [
         {
             "name": "Aufwärmen",
@@ -19,13 +19,13 @@
                 },
                 {
                     "name": "Kniehebelauf",
-                    "duration": 60
+                    "duration": 50
                 }
             ]
         },
         {
             "name": "Leg Blasters",
-            "repetitions": 4,
+            "repetitions": 3,
             "rest": 30,
             "steps": [
                 {
@@ -50,13 +50,13 @@
         },
         {
             "name": "Russischer Twist",
-            "repetitions": 3,
-            "duration": 30,
+            "repetitions": 2,
+            "duration": 35,
             "rest": 15
         },
         {
             "name": "Seitsprünge mit Halten",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
@@ -71,23 +71,23 @@
         },
         {
             "name": "Oberkörperstabilisation und Rücken",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
                     "name": "Latzug",
-                    "repetitions": 10
+                    "repetitions": 15
                 },
                 {
                     "name": "Superman",
-                    "duration": 30,
+                    "duration": 40,
                     "perSide": true
                 }
             ]
         },
         {
             "name": "Jane Fonda plus",
-            "repetitions": 2,
+            "repetitions": 1,
             "rest": 30,
             "steps": [
                 {
@@ -126,7 +126,7 @@
         },
         {
             "name": "Ganzkörper",
-            "repetitions": 3,
+            "repetitions": 2,
             "rest": 15,
             "steps": [
                 {
