@@ -1,0 +1,143 @@
+{
+    "name": "Skigymnastik 1 - Stufe 3",
+    "excercises": [
+        {
+            "name": "Aufwärmen",
+            "rest": 20,
+            "steps": [
+                {
+                    "name": "Schulterkreisen",
+                    "duration": 30
+                },
+                {
+                    "name": "Seitlich neigen",
+                    "duration": 30
+                },
+                {
+                    "name": "Vornüber neigen",
+                    "repetitions": 10
+                },
+                {
+                    "name": "Kniehebelauf",
+                    "duration": 60
+                }
+            ]
+        },
+        {
+            "name": "Leg Blasters",
+            "repetitions": 4,
+            "rest": 30,
+            "steps": [
+                {
+                    "name": "Kniebeuge (explosiv)",
+                    "repetitions": 10
+                },
+                {
+                    "name": "Ausfallschritt",
+                    "repetitions": 10,
+                    "perSide": true
+                },
+                {
+                    "name": "Ausfallschritt mit Sprung",
+                    "repetitions": 5,
+                    "perSide": true
+                },
+                {
+                    "name": "Kniebeuge mit Sprung",
+                    "repetitions": 5
+                }
+            ]
+        },
+        {
+            "name": "Russischer Twist",
+            "repetitions": 2,
+            "duration": 30,
+            "rest": 15
+        },
+        {
+            "name": "Seitsprünge mit Halten",
+            "repetitions": 3,
+            "rest": 15,
+            "steps": [
+                {
+                    "name": "Seitsprung über Hindernis",
+                    "duration": 30
+                },
+                {
+                    "name": "Halten in Abfahrtsposition",
+                    "duration": 30
+                }
+            ]
+        },
+        {
+            "name": "Oberkörperstabilisation und Rücken",
+            "repetitions": 2,
+            "rest": 15,
+            "steps": [
+                {
+                    "name": "Latzug",
+                    "repetitions": 10
+                },
+                {
+                    "name": "Superman",
+                    "duration": 30,
+                    "perSide": true
+                }
+            ]
+        },
+        {
+            "name": "Jane Fonda plus",
+            "repetitions": 2,
+            "rest": 30,
+            "steps": [
+                {
+                    "name": "Jane Fonda",
+                    "perSide": true,
+                    "steps": [
+                        {
+                            "name": "Heben und Senken",
+                            "duration": 30
+                        },
+                        {
+                            "name": "Knie zur Brust",
+                            "duration": 30
+                        },
+                        {
+                            "name": "Ferse zum Po",
+                            "duration": 30
+                        },
+                        {
+                            "name": "Kreisen lassen",
+                            "duration": 30
+                        }
+                    ]
+                },
+                {
+                    "name": "Innenseitlift",
+                    "duration": 30,
+                    "perSide": true
+                },
+                {
+                    "name": "Ein-Auswärts-Dreher",
+                    "duration": 30,
+                    "perSide": true
+                }
+            ]
+        },
+        {
+            "name": "Ganzkörper",
+            "repetitions": 2,
+            "rest": 15,
+            "steps": [
+                {
+                    "name": "Hampelmann",
+                    "duration": 30
+                },
+                {
+                    "name": "Plank",
+                    "duration": 30
+                }
+            ]
+        }
+    ]
+}
