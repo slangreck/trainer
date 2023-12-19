@@ -37,9 +37,13 @@ class Trainer {
             switch (event.key) {
                 case "ArrowLeft":
                     this.gotoPage(this.#currentPage - 1);
+
+                    event.preventDefault();
                     break;
                 case "ArrowRight":
                     this.gotoPage(this.#currentPage + 1);
+
+                    event.preventDefault();
                     break;
                 case " ":
                     if (this.#running) {
