@@ -108,11 +108,16 @@ class Trainer {
         Beeper.initialize();
     }
 
-    gotoPage(index, endExcercise = true, animate = true) {
-        if (this.#running && endExcercise && this.#excercises[index - 1] !== this.#currentExcercise) {
+    gotoPage(index, skipExcercise = true, animate = true) {
+        let restart = false;
+        if (this.#running && skipExcercise && this.#excercises[index - 1] !== this.#currentExcercise) {
             this.#running = false;
             this.#currentExcercise?.end();
             this.#currentExcercise = null;
+
+            if (index === this.#currentPage + 1 && index <= this.#excercises.length) {
+                restart = true;
+            }
         }
 
         this.#currentPage = Math.max(Math.min(index, this.#excercises.length + 1), 0);
@@ -120,6 +125,10 @@ class Trainer {
 
         this.#prev.textContent = this.getPageName(this.#currentPage - 1);
         this.#next.textContent = this.getPageName(this.#currentPage + 1);
+
+        if (restart) {
+            this.start();
+        }
     }
 
     getPageName(pageIndex) {
