@@ -121,7 +121,7 @@ class Trainer {
         }
 
         this.#currentPage = Math.max(Math.min(index, this.#excercises.length + 1), 0);
-        window.scrollTo({ left: window.innerWidth * (this.#currentPage), top: 0, behavior: animate ? "smooth" : "instant" });
+        ScrollManager.scrollTo({ left: window.innerWidth * (this.#currentPage), top: 0, behavior: animate ? "smooth" : "instant" });
 
         this.#prev.textContent = this.getPageName(this.#currentPage - 1);
         this.#next.textContent = this.getPageName(this.#currentPage + 1);
