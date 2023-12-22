@@ -174,12 +174,14 @@ class Trainer {
             await promise;
         }
 
-        this.#running = false;
-        this.#currentExcercise = null;
+        if (this.#running) {
+            this.#running = false;
+            this.#currentExcercise = null;
 
-        const elapsed = Date.now() - this.#startTime;
-        this.#totalTime.textContent = Timer.formatDuration(elapsed);
+            const elapsed = Date.now() - this.#startTime;
+            this.#totalTime.textContent = Timer.formatDuration(elapsed);
 
-        this.gotoPage(this.#excercises.length + 1);
+            this.gotoPage(this.#excercises.length + 1);
+        }
     }
 }
