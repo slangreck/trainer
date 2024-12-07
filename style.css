@@ -32,7 +32,6 @@ header > a {
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s;
     user-select: none;
-    max-width: 50%;
 }
 
 header > a:hover {
@@ -50,12 +49,12 @@ header > a:empty {
 }
 
 header > a#prev-excercise::before {
-    content: "⮜";
+    content: "<";
     margin-right: 15px;
 }
 
 header > a#next-excercise::after {
-    content: "⮞";
+    content: ">";
     margin-left: 15px;
 }
 
@@ -220,6 +219,15 @@ header > a#next-excercise::after {
 @media (width < 1000px) {
     body {
         padding-top: 90px;
+    }
+    
+    header > a#prev-excercise {
+        font-size: 0px;
+    }
+    
+    header > a#prev-excercise::before {
+        font-size: 20px;
+        margin-right: unset;
     }
     
     .excercise > .steps > .excercise {
