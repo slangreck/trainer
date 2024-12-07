@@ -153,6 +153,10 @@ class Trainer {
         }
 
         this.#running = true;
+        
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        }
 
         this.#finished.classList.remove("hidden");
 
@@ -177,6 +181,10 @@ class Trainer {
         if (this.#running) {
             this.#running = false;
             this.#currentExcercise = null;
+            
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
 
             const elapsed = Date.now() - this.#startTime;
             this.#totalTime.textContent = Timer.formatDuration(elapsed);
